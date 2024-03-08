@@ -14,7 +14,7 @@ from app.errors import (
 from app.main import go_to_cafe
 
 
-def test_errors_hierarchy():
+def test_errors_hierarchy():  # Better to use parametrize in case of multiple asserts
     assert NotVaccinatedError.__bases__ == (
         VaccineError,
     ), "NotVaccinatedError should inherit only VaccineError class"
@@ -80,6 +80,7 @@ def test_cafe_visit_should_raise_outdated_vaccine_error_when_vaccine_has_expired
     with pytest.raises(OutdatedVaccineError) as error:
         cafe.visit_cafe(visitor)
     assert str(error.value), "OutdatedVaccineError should be raised with a message"
+    # Better to specify error message in parametrize section
 
 
 @pytest.mark.parametrize(
@@ -341,6 +342,7 @@ def test_cafe_visit_should_return_welcome_when_visitor_is_wearing_a_mask_and_vac
     ],
 )
 def test_go_to_the_cafe(friends, cafe, expected_message):
+    # The name of test should be descriptive with 'success' of 'errors' in the name
     assert go_to_cafe(friends=friends, cafe=cafe) == expected_message
 
 
