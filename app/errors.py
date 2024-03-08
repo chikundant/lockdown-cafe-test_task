@@ -10,5 +10,5 @@ class NotVaccinatedError(VaccineError):
     pass
 
 
-class OutdatedVaccineError(VaccineError):
+class OutdatedVaccineError(VaccineError):  # Add additional line at the end of file
     pass
